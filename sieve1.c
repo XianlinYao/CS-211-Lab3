@@ -48,6 +48,7 @@ int main(int argc, char* argv[])
 	high_value = high_value - (high_value + 1) % 2;
 
 	size = (high_value - low_value) / 2 + 1;
+	/* Process 0 must contain all prime factor */
 	proc0_size = (n / 2 - 1) / p;
 	if ((2 + proc0_size) < (int)sqrt((double)n / 2)) {
 		if (!id) printf("Too many processes\n");

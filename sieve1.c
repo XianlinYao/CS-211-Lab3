@@ -85,14 +85,14 @@ int main (int argc, char *argv[])
    count = 0;
    for (i = 0; i < size; i++)
        if (!marked[i]) count++;
-	/* Special for 2 */
-	if (i == 0)	count ++;
+   /* Special for 2 */
+   if (i == 0)	count ++;
 
-	if (p > 1)
-		MPI_Reduce(&count, &global_count, 1, MPI_INT, MPI_SUM,
-					  0, MPI_COMM_WORLD);
+   if (p > 1)
+	   MPI_Reduce(&count, &global_count, 1, MPI_INT, MPI_SUM,
+				  0, MPI_COMM_WORLD);
 
-	/* Stop the timer */
+   /* Stop the timer */
    elapsed_time += MPI_Wtime();
 
 

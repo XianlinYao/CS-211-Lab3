@@ -65,7 +65,7 @@ int main (int argc, char *argv[])
 		exit(1);
 	}
 
-	for (i = 0; i < size; i++) marked[i] = 0;
+   for (i = 0; i < size; i++) marked[i] = 0;
    if (!id) index = 0;
    prime = 3;
    do {

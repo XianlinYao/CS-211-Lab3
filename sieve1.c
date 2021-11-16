@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 			first = (prime * prime - low_value) / 2;
 		else {
 			if (!(low_value % prime)) first = 0;
-			else first = (prime + prime - low_value) / 2;
+			else first = (low_value / prime % 2 * prime + prime - low_value % prime) / 2;
 		}
 		for (i = first; i < size; i += prime) marked[i] = 1;
 		if (!id) {
@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
 	for (i = 0; i < size; i++)
 		if (!marked[i]) count++;
 	/* Special for 2 */
-	if (i == 0)	count++;
+	if (id == 0)	count++;
 
 	if (p > 1)
 		MPI_Reduce(&count, &global_count, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);

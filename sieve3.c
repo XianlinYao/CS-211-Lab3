@@ -110,9 +110,9 @@ int main(int argc, char* argv[])
 				first = (prime * prime - block_low_value) / 2;
 			else {
 				if (!(block_low_value % prime)) first = 0;
-				else first = (prime + prime - block_low_value) / 2;
+				else first = (block_low_value / prime % 2 * prime + prime - block_low_value % prime) / 2;
 			}
-			for (i = first + block_low_value - low_value; i <= block_high_value - low_value; i += prime) marked[i] = 1;
+			for (i = first + (block_low_value - low_value) / 2; i <= (block_high_value - low_value) / 2; i += prime) marked[i] = 1;
 			while (local_prime_marked[++index]);
 			prime = index + 2;
 		} while (prime * prime <= block_high_value);
@@ -126,7 +126,7 @@ int main(int argc, char* argv[])
 	for (i = 0; i < size; i++)
 		if (!marked[i]) count++;
 	/* Special for 2 */
-	if (i == 0)	count++;
+	if (id == 0)	count++;
 
 	if (p > 1)
 		MPI_Reduce(&count, &global_count, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);

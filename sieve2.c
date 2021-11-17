@@ -84,7 +84,8 @@ int main(int argc, char* argv[])
 	for (i = 0; i < local_prime_size; i++)
 		local_prime_marked[i] = 0;
 	index = 0;
-	do {
+	do
+	{
 		local_first = local_prime * local_prime - 2;
 		for (i = local_first; i < local_prime_size; i += local_prime)
 			local_prime_marked[i] = 1;
@@ -95,14 +96,19 @@ int main(int argc, char* argv[])
 	for (i = 0; i < size; i++) marked[i] = 0;
 	index = 0;
 	prime = 3;
-	do {
+	do
+	{
 		if (prime * prime > low_value)
 			first = (prime * prime - low_value) / 2;
-		else {
-			if (!(low_value % prime)) first = 0;
-			else first = (low_value / prime % 2 * prime + prime - low_value % prime) / 2;
+		else
+		{
+			if ((low_value % prime) == 0)
+				first = 0;
+			else
+				first = (prime - (low_value % prime) + low_value / prime % 2 * prime) / 2;
 		}
-		for (i = first; i < size; i += prime) marked[i] = 1;
+		for (i = first; i < size; i += prime)
+			marked[i] = 1;
 		while (local_prime_marked[++index]);
 		prime = index + 2;
 	} while (prime * prime <= n);
@@ -110,7 +116,8 @@ int main(int argc, char* argv[])
 	for (i = 0; i < size; i++)
 		if (!marked[i]) count++;
 	/* Special for 2 */
-	if (id == 0)	count++;
+	if (id == 0)
+		count++;
 
 	if (p > 1)
 		MPI_Reduce(&count, &global_count, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);

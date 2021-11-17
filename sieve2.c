@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
 			first = (prime * prime - low_value) / 2;
 		else
 		{
-			if ((low_value % prime) == 0)
+			if (!(low_value % prime))
 				first = 0;
 			else
 				first = (prime - (low_value % prime) + low_value / prime % 2 * prime) / 2;
